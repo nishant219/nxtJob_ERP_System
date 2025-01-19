@@ -7,7 +7,9 @@
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "test": "vitest",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "generate": "drizzle-kit generate",
+    "migrate": "tsx migrate.ts"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.5.2",
@@ -15,6 +17,7 @@
     "@types/dotenv": "^8.2.3",
     "@types/node": "^22.10.7",
     "drizzle-kit": "^0.30.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "vitest": "2.1.8",
     "wrangler": "^3.103.2"

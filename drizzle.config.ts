@@ -5,7 +5,8 @@ dotenv.config();
 export default {
   schema: './src/models/schema.ts',
   out: './drizzle',
-  driver: 'd1-http',
+  driver: 'd1-http', 
+  dialect: 'postgresql',
   dbCredentials: {
     accountId: process.env.CF_ACCOUNT_ID!,
     databaseId: process.env.CF_DATABASE_ID!,

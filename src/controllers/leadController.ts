@@ -25,8 +25,11 @@ export class LeadController {
   async createLead(c: Context) {
     try {
       const body = await c.req.json();
+      console.log('body:', body);
       const validatedData = createLeadSchema.parse(body);
+      console.log('validatedData:', validatedData);
       const lead = await this.leadService.createLead(validatedData);
+      console.log('lead:', lead);
       return c.json(lead, 201);
     } catch (error : any) {
       if (error.name === 'ZodError') {
