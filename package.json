@@ -16,6 +16,7 @@
     "@cloudflare/workers-types": "^4.20250109.0",
     "@types/dotenv": "^8.2.3",
     "@types/node": "^22.10.7",
+    "@types/ws": "^8.5.13",
     "drizzle-kit": "^0.30.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
@@ -28,6 +29,7 @@
     "drizzle-orm": "^0.38.4",
     "hono": "^4.6.17",
     "pg": "^8.13.1",
+    "ws": "^8.18.0",
     "zod": "^3.24.1"
   }
 }
