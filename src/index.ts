@@ -1,9 +1,10 @@
-// src/index.ts
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { createDbClient } from './config/database';
 import { LeadService } from './services/leadService';
 import { LeadController } from './controllers/leadController';
+import { leads } from './models/schema';
+import { sql } from 'drizzle-orm';
 
 interface Env {
   DATABASE_URL: string;
@@ -32,6 +33,18 @@ app.use('/*', async (c, next) => {
   } catch (error) {
     console.error('Middleware error:', error);
     return c.json({ error: 'Internal server error' }, 500);
+  }
+});
+
+// Health check
+app.get('/health', async (c) => {
+  try {
+    const db = createDbClient(c.env.DATABASE_URL);
+    await db.execute(sql`SELECT 1`);
+    return c.json({ status: 'healthy', database: 'connected' });
+  } catch (error) {
+    console.error('Health check failed:', error);
+    return c.json({ status: 'unhealthy', error: 'Database connection failed' }, 500);
   }
 });
 
