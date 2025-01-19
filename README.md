@@ -73,53 +73,26 @@ Create a `.dev.vars` file in the root directory:
 DATABASE_URL=postgres://<user>:<password>@<host>/<database>
 ```
 
-## 📝 API Endpoints
+### 📝 API Endpoints
 
 ### Get Leads
-```http
-GET /leads
+``` 
+- GET /leads  :Retrieves a list of leads with optional filters (e.g., page, limit, source, owner, and search query).
 ```
-Query Parameters:
-- `page` (optional): Page number (default: 1)
-- `limit` (optional): Results per page (default: 20)
-- `source` (optional): Filter by lead source
-- `owner` (optional): Filter by lead owner
-- `query` (optional): Search leads by name
 
 ### Create Lead
-```http
-POST /leads
-```
-Request Body:
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "source": "Facebook",
-  "owner": "1234"
-}
+``` 
+POST /leads   :Creates a new lead with provided details like name, email, source, and owner.
 ```
 
 ### Update Lead Stage
-```http
-PATCH /leads/{leadId}/stage
-```
-Request Body:
-```json
-{
-  "stage": "In Progress"
-}
+``` 
+PATCH /leads/:leadId/stage   :Updates the stage of a lead (e.g., from 'New' to 'In Progress').
 ```
 
 ### Update Lead Owner
-```http
-PATCH /leads/{leadId}/owner
-```
-Request Body:
-```json
-{
-  "owner": "5678"
-}
+``` 
+PATCH /leads/:leadId/owner    :Changes the owner of the specified lead.
 ```
 
 ## 🧪 Testing
