@@ -2,8 +2,23 @@ name = "sparkling-mouse-e6bd"
 main = "src/index.ts"
 compatibility_date = "2024-01-19"
 
-[
-vars
-]
-# Example of environment variable (optional)
-ENVIRONMENT = "development"
+[vars]
+ENVIRONMENT = "production"
+
+# Enable the Workers HTTP/HTTPS request handling
+workers_dev = true
+
+# Configure minimal TLS version
+compatibility_flags = ["nodejs_compat"]
+
+# Add triggers if needed
+[triggers]
+crons = []
+
+[build]
+command = "npm run build"
+
+# Development configuration
+[dev]
+port = 8787
+local_protocol = "http"

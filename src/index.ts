@@ -17,7 +17,14 @@ interface CustomContext {
 const app = new Hono<{ Bindings: Env; Variables: CustomContext }>();
 
 // Middleware
-app.use('/*', cors());
+app.use('*', cors({
+  origin: '*',
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization'],
+  exposeHeaders: ['Content-Length', 'X-Requested-With'],
+  maxAge: 86400,
+  credentials: true,
+}));
 
 // Initialize services and controllers
 app.use('/*', async (c, next) => {
@@ -54,5 +61,12 @@ app.get('/leads', (c) => c.get('leadController').getLeads(c));
 app.post('/leads', (c) => c.get('leadController').createLead(c));
 app.patch('/leads/:leadId/stage', (c) => c.get('leadController').updateLeadStage(c));
 app.patch('/leads/:leadId/owner', (c) => c.get('leadController').updateLeadOwner(c));
+
+app.notFound((c) => {
+  return c.json({
+    error: 'Not Found',
+    message: 'The requested resource was not found'
+  }, 404);
+});
 
 export default app;
