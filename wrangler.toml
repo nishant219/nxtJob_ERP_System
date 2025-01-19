@@ -5,20 +5,16 @@ compatibility_date = "2024-01-19"
 [vars]
 ENVIRONMENT = "production"
 
-# Enable the Workers HTTP/HTTPS request handling
-workers_dev = true
-
-# Configure minimal TLS version
-compatibility_flags = ["nodejs_compat"]
-
-# Add triggers if needed
-[triggers]
-crons = []
-
+# Enable detailed logging
 [build]
 command = "npm run build"
 
-# Development configuration
 [dev]
 port = 8787
-local_protocol = "http"
+
+# Enable minimal compatibility mode
+compatibility_flags = ["nodejs_compat"]
+
+# Configure logging
+[logs]
+enabled = true
